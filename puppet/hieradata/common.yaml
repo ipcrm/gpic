@@ -1,0 +1,83 @@
+snmp_data:
+  network_info:
+    type: if_octets
+    table: 'true'
+    instance: 'IF-MIB::ifDescr'
+    values:
+      - 'IF-MIB::ifInOctets'
+      - 'IF-MIB::ifOutOctets'
+  uptime:
+    type: uptime
+    table: 'false'
+    instance: uptime
+    values:
+      - 'DISMAN-EVENT-MIB::sysUpTimeInstance'
+  memory_total:
+    type: memory
+    table: 'false'
+    instance: memory_total
+    values:
+      - "UCD-SNMP-MIB::memTotalReal.0"
+  memory_avail:
+    type: memory
+    table: 'false'
+    instance: memory_avail
+    values: 
+      - "UCD-SNMP-MIB::memAvailReal.0"
+  memory_free:
+    type: memory
+    table: 'false'
+    instance: memory_free
+    values:
+      - "UCD-SNMP-MIB::memTotalFree.0"
+  swap_total:
+    type: memory
+    instance: swap_total
+    table: 'false'
+    values:
+      - "UCD-SNMP-MIB::memTotalSwap.0"
+  swap_avail:
+    type: memory
+    instance: swap_avail
+    table: 'false'
+    values:
+      - "UCD-SNMP-MIB::memAvailSwap.0"
+  memory_shared:
+    type: memory
+    instance: mem_shared
+    table: 'false'
+    values:
+      - "UCD-SNMP-MIB::memShared.0"
+  memory_buffer:
+    type: memory
+    instance: mem_buffer
+    table: 'false'
+    values:
+      - "UCD-SNMP-MIB::memBuffer.0"
+  memory_cached:
+    type: memory
+    instance: mem_cached
+    table: 'false'
+    values:
+      - "UCD-SNMP-MIB::memCached.0"
+
+snmp_data_list: &snmp_data_list
+  - network_info
+  - uptime
+  - memory_total
+  - memory_avail
+  - memory_free
+  - swap_total
+  - swap_avail
+  - memory_shared
+  - memory_buffer
+  - memory_cached
+
+snmp_hosts:
+  client1:
+    address: 192.168.43.234
+    version: 2
+    community: secret
+    interval: 10
+    collect: *snmp_data_list
+    
