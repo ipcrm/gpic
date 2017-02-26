@@ -13,9 +13,21 @@ class gpic::collectd {
     },
   }
 
-  class {'collectd::plugin::snmp':
-    data  => hiera('snmp_data'),
-    hosts => hiera('snmp_hosts'),
+  hiera('snmp_data').each |$e,$d| {
+    collectd::plugin::snmp::data {$e:
+      * => $d,
+    }
   }
 
+  hiera('snmp_hosts').each |$h,$f| {
+    collectd::plugin::snmp::host {$h:
+      * => $f
+    }
+  }
+
+ class { 'collectd::plugin::df':
+    mountpoints        => ['/u'],
+    fstypes          => ['nfs','tmpfs','autofs','gpfs','proc','devpts'],
+    ignoreselected => true,
+  }
 }
