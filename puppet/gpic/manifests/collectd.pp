@@ -1,0 +1,3 @@
+class gpic::collectd {
+
+}

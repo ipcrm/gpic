@@ -1,0 +1,3 @@
+class gpic::influxdb {
+
+}

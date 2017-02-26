@@ -1,0 +1,4 @@
+puppet module install golja-influxdb --version 4.0.0
+puppet module install dwerder-grafana --version 1.2.2
+puppet module install puppet-collectd --version 5.3.0
+puppet module install stankevich-python --version 1.18.2
