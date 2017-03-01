@@ -95,6 +95,32 @@ snmp_data:
     table: 'true'
     values:
      - "UCD-SNMP-MIB::dskPercentNode"
+  cpu_user:
+    type: percent
+    instance: cpu_user
+    table: false
+    values:
+      - "UCD-SNMP-MIB::ssCpuUser.0"
+  cpu_system:
+    type: percent
+    instance: cpu_system
+    table: false
+    values:
+      - "UCD-SNMP-MIB::ssCpuSystem.0"
+  cpu_idle:
+    type: percent
+    instance: cpu_idle
+    table: false
+    values:
+      - "UCD-SNMP-MIB::ssCpuIdle.0"
+  load_info:
+    type: load
+    instance: load
+    table: false
+    values:
+      - "UCD-SNMP-MIB::laLoad.1"
+      - "UCD-SNMP-MIB::laLoad.2"
+      - "UCD-SNMP-MIB::laLoad.3"
 
 snmp_data_list: &snmp_data_list
   - network_info
@@ -112,6 +138,11 @@ snmp_data_list: &snmp_data_list
   - disk_used
   - disk_percent
   - disk_inodepercent
+  - cpu_user
+  - cpu_system
+  - cpu_idle
+  - load_info
+
 
 snmp_hosts:
   client1:
