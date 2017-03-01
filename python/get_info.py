@@ -2,7 +2,7 @@
 import paramiko
 
 # To be replaced with infile
-hosts = ['client1']
+hosts = ['client1','client2','client3']
 
 # To be replaced with infile
 commands = {
@@ -13,9 +13,11 @@ commands = {
     'asset':'cat /sys/devices/virtual/dmi/id/chassis_asset_tag',
     'memtotal': """cat /proc/meminfo |grep MemTotal|awk '{print $2}'""",
     'cputype': """cat /proc/cpuinfo |grep model\ name|awk -F':' '{print $2}'|sed 's/^ //g'""",
-    'diskinfo': """dmesg|grep logical\ blocks|awk '{print $5,$10,$11,$12}'|tr '\n' ','|sed 's/,$//g'""",
-    'ipaddr': """/usr/sbin/ip addr show|grep inet |grep -v inet6 |grep -v 127.0.0.1|awk '{print $2}'|awk -F '/' '{print $1}'|tr '\n' ','|sed 's/,$//g'"""
+#    'diskinfo': """dmesg|grep logical\ blocks|awk '{print $5,$10,$11,$12}'|tr '\n' ','|sed 's/,$//g'""",
+    'ipaddr': """ip addr show|grep inet |grep -v inet6 |grep -v 127.0.0.1|awk '{print $2}'|awk -F '/' '{print $1}'|tr '\n' ','|sed 's/,$//g'"""
 }
+
+shell_path='/bin:/usr/bin:/sbin:/usr/sbin'
 
 for host in hosts:
   hostinfo = {}
@@ -24,7 +26,8 @@ for host in hosts:
   ssh.connect(host, username='vagrant', password='vagrant')
 
   for item, command in commands.iteritems():
-    stdin,stdout,stderr = ssh.exec_command(command)
+    newcommand=("export PATH=\'%s\';" % shell_path) + command
+    stdin,stdout,stderr = ssh.exec_command(newcommand)
     hostinfo[item] = stdout.readline()[0:-1]
 
   print hostinfo
