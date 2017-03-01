@@ -3,5 +3,3 @@ puppet module install bodgit-grafana --version 1.0.0
 puppet module install puppet-collectd --version 5.3.0
 puppet module install stankevich-python --version 1.18.2
 puppet module install puppetlabs-apache --version 1.11.0
-puppet module install bodgit-graphite --version 1.0.0
-puppet module install bodgit-carbon --version 1.0.1
