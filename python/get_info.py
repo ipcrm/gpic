@@ -13,7 +13,8 @@ commands = {
     'asset':'cat /sys/devices/virtual/dmi/id/chassis_asset_tag',
     'memtotal': """cat /proc/meminfo |grep MemTotal|awk '{print $2}'""",
     'cputype': """cat /proc/cpuinfo |grep model\ name|awk -F':' '{print $2}'|sed 's/^ //g'""",
-    'diskinfo': """dmesg|grep logical\ blocks|awk '{print $5,$10,$11,$12}'|tr '\n' ','|sed 's/,$//g'"""
+    'diskinfo': """dmesg|grep logical\ blocks|awk '{print $5,$10,$11,$12}'|tr '\n' ','|sed 's/,$//g'""",
+    'ipaddr': """/usr/sbin/ip addr show|grep inet |grep -v inet6 |grep -v 127.0.0.1|awk '{print $2}'|awk -F '/' '{print $1}'|tr '\n' ','|sed 's/,$//g'"""
 }
 
 for host in hosts:
