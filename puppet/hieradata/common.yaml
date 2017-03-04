@@ -42,12 +42,6 @@ snmp_data:
     table: 'false'
     values:
       - "UCD-SNMP-MIB::memAvailSwap.0"
-  memory_shared:
-    type: memory
-    instance: mem_shared
-    table: 'false'
-    values:
-      - "UCD-SNMP-MIB::memShared.0"
   memory_buffer:
     type: memory
     instance: mem_buffer
@@ -130,7 +124,6 @@ snmp_data_list: &snmp_data_list
   - memory_free
   - swap_total
   - swap_avail
-  - memory_shared
   - memory_buffer
   - memory_cached
   - disk_total
@@ -146,6 +139,21 @@ snmp_data_list: &snmp_data_list
 
 snmp_hosts:
   client1:
+    version: '2'
+    community: secret
+    interval: 10
+    collect: *snmp_data_list
+  client2:
+    version: '2'
+    community: secret
+    interval: 10
+    collect: *snmp_data_list
+  client3:
+    version: '2'
+    community: secret
+    interval: 10
+    collect: *snmp_data_list
+  server1:
     version: '2'
     community: secret
     interval: 10
