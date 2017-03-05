@@ -6,4 +6,6 @@ class gpic::python {
     ensure => present,
   }
 
+  python::requirements { '/git/python/requirements.txt' : }
+
 }
