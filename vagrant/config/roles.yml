@@ -1,12 +1,15 @@
 roles:
   snmp_agent: |
+    chkconfig iptables off 
+    chkconfig firewalld off
+    service iptables stop
+    service firewalld stop
+    iptables -F
     yum install -y net-snmp
     echo 'disk / 10000' >> /etc/snmp/snmpd.conf
     echo 'rocommunity secret' >> /etc/snmp/snmpd.conf
     chkconfig snmpd on
     service snmpd restart
-    chkconfig iptables off || chkconfig firewalld off
-    iptables -F
 
   server_node: |
     yum install -y git
