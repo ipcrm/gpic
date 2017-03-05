@@ -5,6 +5,8 @@ roles:
     echo 'rocommunity secret' >> /etc/snmp/snmpd.conf
     chkconfig snmpd on
     service snmpd restart
+    chkconfig iptables off || chkconfig firewalld off
+    iptables -F
 
   server_node: |
     yum install -y git
