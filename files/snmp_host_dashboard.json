@@ -1628,41 +1628,16 @@
             "list": [
                 {
                     "allValue": null,
-                    "current": {
-                        "tags": [],
-                        "text": "client3",
-                        "value": "client3"
-                    },
+                    "current": {},
                     "datasource": "InfluxDB",
                     "hide": 0,
                     "includeAll": false,
                     "label": "Host",
                     "multi": false,
                     "name": "host",
-                    "options": [
-                        {
-                            "selected": false,
-                            "text": "client1",
-                            "value": "client1"
-                        },
-                        {
-                            "selected": false,
-                            "text": "client2",
-                            "value": "client2"
-                        },
-                        {
-                            "selected": true,
-                            "text": "client3",
-                            "value": "client3"
-                        },
-                        {
-                            "selected": false,
-                            "text": "server1",
-                            "value": "server1"
-                        }
-                    ],
+                    "options": [],
                     "query": "SHOW TAG VALUES FROM \"snmp_value\" WITH KEY = \"host\"",
-                    "refresh": 0,
+                    "refresh": 1,
                     "regex": "",
                     "sort": 1,
                     "tagValuesQuery": "",
