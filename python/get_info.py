@@ -16,7 +16,6 @@ commands = {
     'asset':'cat /sys/devices/virtual/dmi/id/chassis_asset_tag',
     'memtotal': """cat /proc/meminfo |grep MemTotal|awk '{print $2}'""",
     'cputype': """cat /proc/cpuinfo |grep model\ name|awk -F':' '{print $2}'|sed 's/^ //g'""",
-#    'diskinfo': """dmesg|grep logical\ blocks|awk '{print $5,$10,$11,$12}'|tr '\n' ','|sed 's/,$//g'""",
     'ipaddr': """ip addr show|grep inet |grep -v inet6 |grep -v 127.0.0.1|awk '{print $2}'|awk -F '/' '{print $1}'|tr '\n' ','|sed 's/,$//g'"""
 }
 shell_path='/bin:/usr/bin:/sbin:/usr/sbin'
@@ -31,17 +30,11 @@ myclient = InfluxDBClient(host, port, user, password, dbname)
 
 
 class ServerInfoHelper(SeriesHelper):
-    # Meta class stores time series helper configuration.
     class Meta:
-        # The client should be an instance of InfluxDBClient.
         client = myclient
-        # The series name must be a string. Add dependent fields/tags in curly brackets.
         series_name = 'snmp_data'
-        # Defines all the fields in this time series.
         fields = ['os', 'memtotal', 'vendor', 'asset', 'bios_version', 'cputype', 'model', 'ipaddr']
-        # Defines all the tags for the series.
         tags = ['host']
-        # autocommit must be set to True when using bulk_size
         autocommit = True
 
 for host in hosts:
