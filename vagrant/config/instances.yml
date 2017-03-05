@@ -1,0 +1,17 @@
+---
+instances:
+  server.example.lan:
+    platform: centos7
+    tcp_ports:
+      '8083': '8083'
+      '8086': '8086'
+      '3000': '3000'
+
+  agent1.example.lan:
+    platform: centos7
+
+  agent2.example.lan:
+    platform: centos6
+
+  agent3.example.lan:
+    platform: centos5

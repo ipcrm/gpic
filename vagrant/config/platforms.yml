@@ -1,0 +1,20 @@
+---
+platforms:
+  centos7:
+    sync_method: rsync
+    box: 'puppetlabs/centos-7.2-64-nocm'
+    roles:
+      - snmp_agent
+
+  centos6:
+    sync_method: rsync
+    box: 'puppetlabs/centos-6.6-64-nocm'
+    roles:
+      - snmp_agent
+
+  centos5:
+    sync_method: rsync
+    box: 'puppetlabs/centos-5.11-64-nocm'
+    roles:
+      - snmp_agent
+

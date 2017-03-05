@@ -1,0 +1,7 @@
+roles:
+  snmp_agent: |
+    yum install -y net-snmp
+    echo 'disk / 10000' >> /etc/snmp/snmpd.conf
+    echo 'rocommunity secret' >> /etc/snmp/snmpd.conf
+    chkconfig snmpd on
+    service snmpd restart
