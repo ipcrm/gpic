@@ -1,11 +1,16 @@
 class gpic::python {
 
-  $packages = ['python-pip']
+  $packages = ['python-pip','python-cffi','python-devel']
 
   package {$packages:
     ensure => present,
+    notify => Exec['run pip'],
   }
 
-  python::requirements { '/git/python/requirements.txt' : }
+  exec {'run pip':
+    path        => $::path,
+    command     => 'pip install -r /git/python/requirements.txt',
+    refreshonly => true,
+  }
 
 }
