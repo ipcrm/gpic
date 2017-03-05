@@ -1518,7 +1518,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select sum(value) from snmp_value where time < now() and type_instance =~ /diskpercent/ and host = 'client1' group by time(5s) fill(none)",
+                                "query": "select sum(value) from snmp_value where time < now() and type_instance =~ /diskpercent/ and host =~ /^$host$/ group by time(5s) fill(none)",
                                 "rawQuery": true,
                                 "refId": "A",
                                 "resultFormat": "time_series",
@@ -1556,7 +1556,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select sum(value) from snmp_value where time < now() and type_instance =~ /diskinodeper/ and host = 'client1' group by time(5s) fill(none)",
+                                "query": "select sum(value) from snmp_value where time < now() and type_instance =~ /diskinodeper/ and host =~ /^$host$/ group by time(5s) fill(none)",
                                 "rawQuery": true,
                                 "refId": "B",
                                 "resultFormat": "time_series",
