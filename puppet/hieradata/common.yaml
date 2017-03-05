@@ -138,22 +138,22 @@ snmp_data_list: &snmp_data_list
 
 
 snmp_hosts:
-  client1:
+  server.example.lan:
     version: '2'
     community: secret
     interval: 10
     collect: *snmp_data_list
-  client2:
+  agent1.example.lan:
     version: '2'
     community: secret
     interval: 10
     collect: *snmp_data_list
-  client3:
+  agent2.example.lan:
     version: '2'
     community: secret
     interval: 10
     collect: *snmp_data_list
-  server1:
+  agent3.example.lan:
     version: '2'
     community: secret
     interval: 10

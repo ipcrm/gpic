@@ -5,3 +5,10 @@ roles:
     echo 'rocommunity secret' >> /etc/snmp/snmpd.conf
     chkconfig snmpd on
     service snmpd restart
+
+  server_node: |
+    yum install -y git
+    git clone https://github.com/ipcrm/gpic.git /git
+    bash -x /git/bootstrap.sh
+
+   
