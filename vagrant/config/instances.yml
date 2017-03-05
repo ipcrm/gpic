@@ -6,6 +6,9 @@ instances:
       '8083': '8083'
       '8086': '8086'
       '3000': '3000'
+    roles:
+      - snmp_agent
+      - server_node
 
   agent1.example.lan:
     platform: centos7
