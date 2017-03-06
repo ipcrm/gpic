@@ -969,7 +969,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select value from snmp_value where time < now() and type_instance =~ /swap_total/ and host =~ /^$host$/ fill(none)",
+                                "query": "select value from snmp_value where type_instance =~ /swap_total/ and host =~ /^$host$/ and $timeFilter fill(none)",
                                 "rawQuery": true,
                                 "refId": "A",
                                 "resultFormat": "time_series",
@@ -1007,7 +1007,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select value from snmp_value where time < now() and type_instance =~ /swap_avail/ and host =~ /^$host$/ fill(none)",
+                                "query": "select value from snmp_value where type_instance =~ /swap_avail/ and host =~ /^$host$/ and $timeFilter fill(none)",
                                 "rawQuery": true,
                                 "refId": "B",
                                 "resultFormat": "time_series",
@@ -1109,7 +1109,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select value from snmp_value where time < now() and type_instance =~ /memory_total/ and host =~ /^$host$/ fill(none)",
+                                "query": "select value from snmp_value where and type_instance =~ /memory_total/ and host =~ /^$host$/ and $timeFilter fill(none)",
                                 "rawQuery": true,
                                 "refId": "C",
                                 "resultFormat": "time_series",
@@ -1147,7 +1147,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select value from snmp_value where time < now() and type_instance =~ /mem_cached/ and host =~ /^$host$/ fill(none)",
+                                "query": "select value from snmp_value where type_instance =~ /mem_cached/ and host =~ /^$host$/ and $timeFilter fill(none)",
                                 "rawQuery": true,
                                 "refId": "A",
                                 "resultFormat": "time_series",
@@ -1185,7 +1185,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select value from snmp_value where time < now() and type_instance =~ /mem_buffer/ and host =~ /^$host$/ fill(none)",
+                                "query": "select value from snmp_value where type_instance =~ /mem_buffer/ and host =~ /^$host$/ and $timeFilter fill(none)",
                                 "rawQuery": true,
                                 "refId": "B",
                                 "resultFormat": "time_series",
@@ -1223,7 +1223,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select value from snmp_value where time < now() and type_instance =~ /memory_avail/ and host =~ /^$host$/ fill(none)",
+                                "query": "select value from snmp_value where type_instance =~ /memory_avail/ and host =~ /^$host$/ and $timeFilter fill(none)",
                                 "rawQuery": true,
                                 "refId": "D",
                                 "resultFormat": "time_series",
@@ -1340,7 +1340,7 @@
                                 ],
                                 "hide": false,
                                 "policy": "default",
-                                "query": "select sum(value)/1024 from snmp_value where time < now()  and type_instance =~ /disktotal/ and host =~ /^$host$/ group by time(5s) fill(none)",
+                                "query": "select sum(value)/1024 from snmp_value where type_instance =~ /disktotal/ and host =~ /^$host$/ and $timeFilter group by time(5s) fill(none)",
                                 "rawQuery": true,
                                 "refId": "A",
                                 "resultFormat": "time_series",
@@ -1378,7 +1378,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select sum(value)/1024 from snmp_value where time < now() and type_instance =~ /diskavail/ and host =~ /^$host$/ group by time(5s) fill(none)",
+                                "query": "select sum(value)/1024 from snmp_value where type_instance =~ /diskavail/ and host =~ /^$host$/ and $timeFilter group by time(5s) fill(none)",
                                 "rawQuery": true,
                                 "refId": "B",
                                 "resultFormat": "time_series",
@@ -1416,7 +1416,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select sum(value)/1024 from snmp_value where time < now() and type_instance =~ /diskused/ and host =~ /$host$/ group by time(5s) fill(none)",
+                                "query": "select sum(value)/1024 from snmp_value where type_instance =~ /diskused/ and host =~ /$host$/ and $timeFilter group by time(5s) fill(none)",
                                 "rawQuery": true,
                                 "refId": "C",
                                 "resultFormat": "time_series",
@@ -1518,7 +1518,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select sum(value) from snmp_value where time < now() and type_instance =~ /diskpercent/ and host =~ /^$host$/ group by time(5s) fill(none)",
+                                "query": "select sum(value) from snmp_value where type_instance =~ /diskpercent/ and host =~ /^$host$/ and $timeFilter group by time(5s) fill(none)",
                                 "rawQuery": true,
                                 "refId": "A",
                                 "resultFormat": "time_series",
@@ -1556,7 +1556,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select sum(value) from snmp_value where time < now() and type_instance =~ /diskinodeper/ and host =~ /^$host$/ group by time(5s) fill(none)",
+                                "query": "select sum(value) from snmp_value where type_instance =~ /diskinodeper/ and host =~ /^$host$/ and $timeFilter group by time(5s) fill(none)",
                                 "rawQuery": true,
                                 "refId": "B",
                                 "resultFormat": "time_series",
