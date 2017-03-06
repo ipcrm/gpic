@@ -776,7 +776,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select value from snmp_value where type_instance =~ /cpu_idle/ and host =~ /^$host$/ fill(none)",
+                                "query": "select value from snmp_value where type_instance =~ /cpu_idle/ and host =~ /^$host$/ and $timeFilter fill(none)",
                                 "rawQuery": true,
                                 "refId": "A",
                                 "resultFormat": "time_series",
@@ -814,7 +814,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select value from snmp_value where type_instance =~ /cpu_system/ and host =~ /^$host$/ fill(none)",
+                                "query": "select value from snmp_value where type_instance =~ /cpu_system/ and host =~ /^$host$/ and $timeFilter fill(none)",
                                 "rawQuery": true,
                                 "refId": "B",
                                 "resultFormat": "time_series",
@@ -852,7 +852,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select value from snmp_value where type_instance =~ /cpu_user/ and host =~ /^$host$/ fill(none)",
+                                "query": "select value from snmp_value where type_instance =~ /cpu_user/ and host =~ /^$host$/ and $timeFilter fill(none)",
                                 "rawQuery": true,
                                 "refId": "C",
                                 "resultFormat": "time_series",
