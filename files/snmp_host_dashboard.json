@@ -598,7 +598,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "SELECT value from snmp_shortterm where host =~ /^$host$/",
+                                "query": "SELECT value from snmp_shortterm where host =~ /^$host$/ fill(none)",
                                 "rawQuery": true,
                                 "refId": "A",
                                 "resultFormat": "time_series",
@@ -636,7 +636,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "SELECT value from snmp_midterm where host =~ /^$host$/",
+                                "query": "SELECT value from snmp_midterm where host =~ /^$host$/ fill(none)",
                                 "rawQuery": true,
                                 "refId": "B",
                                 "resultFormat": "time_series",
@@ -674,7 +674,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "SELECT value from snmp_longterm where host =~ /^$host$/",
+                                "query": "SELECT value from snmp_longterm where host =~ /^$host$/ fill(none)",
                                 "rawQuery": true,
                                 "refId": "C",
                                 "resultFormat": "time_series",
