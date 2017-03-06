@@ -1109,7 +1109,7 @@
                                     }
                                 ],
                                 "policy": "default",
-                                "query": "select value from snmp_value where and type_instance =~ /memory_total/ and host =~ /^$host$/ and $timeFilter fill(none)",
+                                "query": "select value from snmp_value where type_instance =~ /memory_total/ and host =~ /^$host$/ and $timeFilter fill(none)",
                                 "rawQuery": true,
                                 "refId": "C",
                                 "resultFormat": "time_series",
