@@ -25,6 +25,16 @@ class gpic::collectd {
     }
   }
 
+  $gpic_hosts = keys(hiera('snmp_hosts'))
+
+  file {'/etc/gpic_hosts':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => '0444',
+    content => template('gpic/gpic_hosts.erb'),
+  }
+
  class { 'collectd::plugin::df':
     mountpoints        => ['/u'],
     fstypes          => ['nfs','tmpfs','autofs','gpfs','proc','devpts'],
