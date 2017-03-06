@@ -57,8 +57,6 @@ for host in hosts:
       if item in ['vendor','asset','bios_version','cpu_type','model'] and len(hostinfo[item]) == 0:
         hostinfo[item] = 'N/A'
 
-    print hostinfo
-
     ServerInfoHelper(host=host, **hostinfo)
   except Exception as e:
     print "Client [%s] - Error: [%s]" % (host,e)
