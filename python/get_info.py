@@ -4,7 +4,14 @@ import sys
 from influxdb import InfluxDBClient
 from influxdb import SeriesHelper
 
-# To be replaced with infile
+# Read hosts from file
+try:
+  with open('/etc/gpic_hosts') as f:
+    hosts = f.read().splitlines()
+except Exception as e:
+    print "Errror: [%s]" % (e)
+    raise
+
 hosts = ['client1','client2','client3']
 
 # To be replaced with infile
