@@ -12,8 +12,6 @@ except Exception as e:
     print "Errror: [%s]" % (e)
     raise
 
-hosts = ['client1','client2','client3']
-
 # To be replaced with infile
 commands = {
     'os':'cat /etc/redhat-release',
