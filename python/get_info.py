@@ -19,11 +19,11 @@ commands = {
     'bios_version':'cat /sys/devices/virtual/dmi/id/bios_version',
     'model':'cat /sys/devices/virtual/dmi/id/product_name',
     'asset':'cat /sys/devices/virtual/dmi/id/chassis_asset_tag',
-    'memtotal': """cat /proc/meminfo |grep MemTotal|awk '{print $2}'""",
+    'memtotal': """free -m|grep Mem|awk '{print $2}'""",
     'cputype': """cat /proc/cpuinfo |grep model\ name|awk -F':' '{print $2}'|sed 's/^ //g'""",
     'cpus': """cat /proc/cpuinfo |grep processor|wc -l""",
     'cpu_cores': """cat /proc/cpuinfo |grep cpu\ cores|wc -l""",
-    'ipaddr': """ip addr show|grep inet |grep -v inet6 |grep -v 127.0.0.1|awk '{print $2}'|awk -F '/' '{print $1}'|tr '\n' ','|sed 's/,$//g'"""
+    'ipaddr': """ip addr show|grep inet |grep -v inet6 |grep -v 127.0.0.1|awk '{print $2}'|awk -F '/' '{print $1}'|tr '\n' ','|sed 's/,$/\n/g'"""
 }
 shell_path='/bin:/usr/bin:/sbin:/usr/sbin'
 

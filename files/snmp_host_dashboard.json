@@ -13,7 +13,7 @@
         "rows": [
             {
                 "collapse": false,
-                "height": 310,
+                "height": 238,
                 "panels": [
                     {
                         "columns": [],
@@ -28,7 +28,7 @@
                             "col": 0,
                             "desc": true
                         },
-                        "span": 8,
+                        "span": 6,
                         "styles": [
                             {
                                 "dateFormat": "YYYY-MM-DD HH:mm:ss",
@@ -90,45 +90,6 @@
                                 "tags": []
                             },
                             {
-                                "alias": "CPU Info",
-                                "dsType": "influxdb",
-                                "groupBy": [
-                                    {
-                                        "params": [
-                                            "$interval"
-                                        ],
-                                        "type": "time"
-                                    },
-                                    {
-                                        "params": [
-                                            "null"
-                                        ],
-                                        "type": "fill"
-                                    }
-                                ],
-                                "hide": false,
-                                "policy": "default",
-                                "query": "SELECT last(cputype) from snmp_data where host =~ /^$host$/",
-                                "rawQuery": true,
-                                "refId": "F",
-                                "resultFormat": "time_series",
-                                "select": [
-                                    [
-                                        {
-                                            "params": [
-                                                "value"
-                                            ],
-                                            "type": "field"
-                                        },
-                                        {
-                                            "params": [],
-                                            "type": "mean"
-                                        }
-                                    ]
-                                ],
-                                "tags": []
-                            },
-                            {
                                 "alias": "BIOS Version",
                                 "dsType": "influxdb",
                                 "groupBy": [
@@ -150,6 +111,45 @@
                                 "query": "SELECT last(bios_version) from snmp_data where host =~ /^$host$/ fill(0)",
                                 "rawQuery": true,
                                 "refId": "E",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "value"
+                                            ],
+                                            "type": "field"
+                                        },
+                                        {
+                                            "params": [],
+                                            "type": "mean"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
+                            },
+                            {
+                                "alias": "Operating System",
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "$interval"
+                                        ],
+                                        "type": "time"
+                                    },
+                                    {
+                                        "params": [
+                                            "null"
+                                        ],
+                                        "type": "fill"
+                                    }
+                                ],
+                                "hide": false,
+                                "policy": "default",
+                                "query": "SELECT last(os) from snmp_data where host =~ /^$host$/",
+                                "rawQuery": true,
+                                "refId": "A",
                                 "resultFormat": "time_series",
                                 "select": [
                                     [
@@ -244,6 +244,203 @@
                                     ]
                                 ],
                                 "tags": []
+                            }
+                        ],
+                        "title": "Server: $host",
+                        "transform": "timeseries_to_rows",
+                        "transparent": false,
+                        "type": "table"
+                    },
+                    {
+                        "columns": [],
+                        "datasource": "InfluxDB",
+                        "fontSize": "100%",
+                        "id": 11,
+                        "links": [],
+                        "pageSize": null,
+                        "scroll": true,
+                        "showHeader": true,
+                        "sort": {
+                            "col": 0,
+                            "desc": true
+                        },
+                        "span": 6,
+                        "styles": [
+                            {
+                                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                                "pattern": "Time",
+                                "type": "hidden"
+                            },
+                            {
+                                "colorMode": null,
+                                "colors": [
+                                    "rgba(245, 54, 54, 0.9)",
+                                    "rgba(237, 129, 40, 0.89)",
+                                    "rgba(50, 172, 45, 0.97)"
+                                ],
+                                "decimals": 2,
+                                "pattern": "/.*/",
+                                "thresholds": [],
+                                "type": "string",
+                                "unit": "short"
+                            }
+                        ],
+                        "targets": [
+                            {
+                                "alias": "Cores Per CPU",
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "$interval"
+                                        ],
+                                        "type": "time"
+                                    },
+                                    {
+                                        "params": [
+                                            "null"
+                                        ],
+                                        "type": "fill"
+                                    }
+                                ],
+                                "hide": false,
+                                "policy": "default",
+                                "query": "SELECT last(cpu_cores) from snmp_data where host =~ /^$host$/",
+                                "rawQuery": true,
+                                "refId": "I",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "value"
+                                            ],
+                                            "type": "field"
+                                        },
+                                        {
+                                            "params": [],
+                                            "type": "mean"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
+                            },
+                            {
+                                "alias": "CPU(s)",
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "$interval"
+                                        ],
+                                        "type": "time"
+                                    },
+                                    {
+                                        "params": [
+                                            "null"
+                                        ],
+                                        "type": "fill"
+                                    }
+                                ],
+                                "hide": false,
+                                "policy": "default",
+                                "query": "SELECT last(cpus) from snmp_data where host =~ /^$host$/",
+                                "rawQuery": true,
+                                "refId": "H",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "value"
+                                            ],
+                                            "type": "field"
+                                        },
+                                        {
+                                            "params": [],
+                                            "type": "mean"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
+                            },
+                            {
+                                "alias": "CPU Info",
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "$interval"
+                                        ],
+                                        "type": "time"
+                                    },
+                                    {
+                                        "params": [
+                                            "null"
+                                        ],
+                                        "type": "fill"
+                                    }
+                                ],
+                                "hide": false,
+                                "policy": "default",
+                                "query": "SELECT last(cputype) from snmp_data where host =~ /^$host$/",
+                                "rawQuery": true,
+                                "refId": "F",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "value"
+                                            ],
+                                            "type": "field"
+                                        },
+                                        {
+                                            "params": [],
+                                            "type": "mean"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
+                            },
+                            {
+                                "alias": "Memory Total",
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "$interval"
+                                        ],
+                                        "type": "time"
+                                    },
+                                    {
+                                        "params": [
+                                            "null"
+                                        ],
+                                        "type": "fill"
+                                    }
+                                ],
+                                "hide": false,
+                                "policy": "default",
+                                "query": "SELECT last(memtotal) from snmp_data where host =~ /^$host$/",
+                                "rawQuery": true,
+                                "refId": "A",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "value"
+                                            ],
+                                            "type": "field"
+                                        },
+                                        {
+                                            "params": [],
+                                            "type": "mean"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
                             },
                             {
                                 "alias": "IP Info",
@@ -283,263 +480,12 @@
                                     ]
                                 ],
                                 "tags": []
-                            },
-                            {
-                                "alias": "Operating System",
-                                "dsType": "influxdb",
-                                "groupBy": [
-                                    {
-                                        "params": [
-                                            "$interval"
-                                        ],
-                                        "type": "time"
-                                    },
-                                    {
-                                        "params": [
-                                            "null"
-                                        ],
-                                        "type": "fill"
-                                    }
-                                ],
-                                "hide": false,
-                                "policy": "default",
-                                "query": "SELECT last(os) from snmp_data where host =~ /^$host$/",
-                                "rawQuery": true,
-                                "refId": "A",
-                                "resultFormat": "time_series",
-                                "select": [
-                                    [
-                                        {
-                                            "params": [
-                                                "value"
-                                            ],
-                                            "type": "field"
-                                        },
-                                        {
-                                            "params": [],
-                                            "type": "mean"
-                                        }
-                                    ]
-                                ],
-                                "tags": []
                             }
                         ],
-                        "title": "Server: $host",
+                        "title": "Details",
                         "transform": "timeseries_to_rows",
                         "transparent": false,
                         "type": "table"
-                    },
-                    {
-                        "cacheTimeout": null,
-                        "colorBackground": false,
-                        "colorValue": false,
-                        "colors": [
-                            "rgba(245, 54, 54, 0.9)",
-                            "rgba(237, 129, 40, 0.89)",
-                            "rgba(50, 172, 45, 0.97)"
-                        ],
-                        "datasource": "InfluxDB",
-                        "format": "s",
-                        "gauge": {
-                            "maxValue": 100,
-                            "minValue": 0,
-                            "show": false,
-                            "thresholdLabels": false,
-                            "thresholdMarkers": true
-                        },
-                        "id": 9,
-                        "interval": null,
-                        "links": [],
-                        "mappingType": 1,
-                        "mappingTypes": [
-                            {
-                                "name": "value to text",
-                                "value": 1
-                            },
-                            {
-                                "name": "range to text",
-                                "value": 2
-                            }
-                        ],
-                        "maxDataPoints": 100,
-                        "nullPointMode": "connected",
-                        "nullText": null,
-                        "postfix": "",
-                        "postfixFontSize": "50%",
-                        "prefix": "",
-                        "prefixFontSize": "50%",
-                        "rangeMaps": [
-                            {
-                                "from": "null",
-                                "text": "N/A",
-                                "to": "null"
-                            }
-                        ],
-                        "span": 2,
-                        "sparkline": {
-                            "fillColor": "rgba(31, 118, 189, 0.18)",
-                            "full": false,
-                            "lineColor": "rgb(31, 120, 193)",
-                            "show": false
-                        },
-                        "targets": [
-                            {
-                                "alias": "Uptime",
-                                "dsType": "influxdb",
-                                "groupBy": [
-                                    {
-                                        "params": [
-                                            "$interval"
-                                        ],
-                                        "type": "time"
-                                    },
-                                    {
-                                        "params": [
-                                            "null"
-                                        ],
-                                        "type": "fill"
-                                    }
-                                ],
-                                "policy": "default",
-                                "query": "select last(value)*.01 from snmp_value where type_instance='uptime' and host=~ /^$host$/",
-                                "rawQuery": true,
-                                "refId": "A",
-                                "resultFormat": "time_series",
-                                "select": [
-                                    [
-                                        {
-                                            "params": [
-                                                "value"
-                                            ],
-                                            "type": "field"
-                                        },
-                                        {
-                                            "params": [],
-                                            "type": "mean"
-                                        }
-                                    ]
-                                ],
-                                "tags": []
-                            }
-                        ],
-                        "thresholds": "",
-                        "title": "Uptime",
-                        "type": "singlestat",
-                        "valueFontSize": "80%",
-                        "valueMaps": [
-                            {
-                                "op": "=",
-                                "text": "N/A",
-                                "value": "null"
-                            }
-                        ],
-                        "valueName": "current"
-                    },
-                    {
-                        "cacheTimeout": null,
-                        "colorBackground": false,
-                        "colorValue": false,
-                        "colors": [
-                            "rgba(245, 54, 54, 0.9)",
-                            "rgba(237, 129, 40, 0.89)",
-                            "rgba(50, 172, 45, 0.97)"
-                        ],
-                        "datasource": null,
-                        "format": "none",
-                        "gauge": {
-                            "maxValue": 100,
-                            "minValue": 0,
-                            "show": false,
-                            "thresholdLabels": false,
-                            "thresholdMarkers": true
-                        },
-                        "id": 10,
-                        "interval": null,
-                        "links": [],
-                        "mappingType": 1,
-                        "mappingTypes": [
-                            {
-                                "name": "value to text",
-                                "value": 1
-                            },
-                            {
-                                "name": "range to text",
-                                "value": 2
-                            }
-                        ],
-                        "maxDataPoints": 100,
-                        "nullPointMode": "connected",
-                        "nullText": null,
-                        "postfix": "",
-                        "postfixFontSize": "50%",
-                        "prefix": "",
-                        "prefixFontSize": "50%",
-                        "rangeMaps": [
-                            {
-                                "from": "null",
-                                "text": "N/A",
-                                "to": "null"
-                            }
-                        ],
-                        "span": 2,
-                        "sparkline": {
-                            "fillColor": "rgba(31, 118, 189, 0.18)",
-                            "full": false,
-                            "lineColor": "rgb(31, 120, 193)",
-                            "show": false
-                        },
-                        "targets": [
-                            {
-                                "alias": "Load",
-                                "dsType": "influxdb",
-                                "groupBy": [
-                                    {
-                                        "params": [
-                                            "$interval"
-                                        ],
-                                        "type": "time"
-                                    },
-                                    {
-                                        "params": [
-                                            "null"
-                                        ],
-                                        "type": "fill"
-                                    }
-                                ],
-                                "policy": "default",
-                                "query": "SELECT mean(value) from snmp_shortterm where host =~ /^$host$/",
-                                "rawQuery": true,
-                                "refId": "A",
-                                "resultFormat": "time_series",
-                                "select": [
-                                    [
-                                        {
-                                            "params": [
-                                                "value"
-                                            ],
-                                            "type": "field"
-                                        },
-                                        {
-                                            "params": [],
-                                            "type": "mean"
-                                        }
-                                    ]
-                                ],
-                                "tags": []
-                            }
-                        ],
-                        "thresholds": "",
-                        "title": "Average Load",
-                        "type": "singlestat",
-                        "valueFontSize": "80%",
-                        "valueMaps": [
-                            {
-                                "op": "=",
-                                "text": "N/A",
-                                "value": "null"
-                            }
-                        ],
-                        "valueName": "avg"
                     }
                 ],
                 "repeat": null,
@@ -577,7 +523,7 @@
                         "points": false,
                         "renderer": "flot",
                         "seriesOverrides": [],
-                        "span": 6,
+                        "span": 3,
                         "stack": false,
                         "steppedLine": false,
                         "targets": [
@@ -730,6 +676,218 @@
                                 "show": true
                             }
                         ]
+                    },
+                    {
+                        "cacheTimeout": null,
+                        "colorBackground": false,
+                        "colorValue": false,
+                        "colors": [
+                            "rgba(245, 54, 54, 0.9)",
+                            "rgba(237, 129, 40, 0.89)",
+                            "rgba(50, 172, 45, 0.97)"
+                        ],
+                        "datasource": null,
+                        "format": "none",
+                        "gauge": {
+                            "maxValue": 100,
+                            "minValue": 0,
+                            "show": false,
+                            "thresholdLabels": false,
+                            "thresholdMarkers": true
+                        },
+                        "id": 10,
+                        "interval": null,
+                        "links": [],
+                        "mappingType": 1,
+                        "mappingTypes": [
+                            {
+                                "name": "value to text",
+                                "value": 1
+                            },
+                            {
+                                "name": "range to text",
+                                "value": 2
+                            }
+                        ],
+                        "maxDataPoints": 100,
+                        "nullPointMode": "connected",
+                        "nullText": null,
+                        "postfix": "",
+                        "postfixFontSize": "50%",
+                        "prefix": "",
+                        "prefixFontSize": "50%",
+                        "rangeMaps": [
+                            {
+                                "from": "null",
+                                "text": "N/A",
+                                "to": "null"
+                            }
+                        ],
+                        "span": 1.5,
+                        "sparkline": {
+                            "fillColor": "rgba(31, 118, 189, 0.18)",
+                            "full": false,
+                            "lineColor": "rgb(31, 120, 193)",
+                            "show": false
+                        },
+                        "targets": [
+                            {
+                                "alias": "Load",
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "$interval"
+                                        ],
+                                        "type": "time"
+                                    },
+                                    {
+                                        "params": [
+                                            "null"
+                                        ],
+                                        "type": "fill"
+                                    }
+                                ],
+                                "policy": "default",
+                                "query": "SELECT mean(value) from snmp_shortterm where host =~ /^$host$/",
+                                "rawQuery": true,
+                                "refId": "A",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "value"
+                                            ],
+                                            "type": "field"
+                                        },
+                                        {
+                                            "params": [],
+                                            "type": "mean"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
+                            }
+                        ],
+                        "thresholds": "",
+                        "title": "Average Load",
+                        "type": "singlestat",
+                        "valueFontSize": "80%",
+                        "valueMaps": [
+                            {
+                                "op": "=",
+                                "text": "N/A",
+                                "value": "null"
+                            }
+                        ],
+                        "valueName": "avg"
+                    },
+                    {
+                        "cacheTimeout": null,
+                        "colorBackground": false,
+                        "colorValue": false,
+                        "colors": [
+                            "rgba(245, 54, 54, 0.9)",
+                            "rgba(237, 129, 40, 0.89)",
+                            "rgba(50, 172, 45, 0.97)"
+                        ],
+                        "datasource": "InfluxDB",
+                        "format": "s",
+                        "gauge": {
+                            "maxValue": 100,
+                            "minValue": 0,
+                            "show": false,
+                            "thresholdLabels": false,
+                            "thresholdMarkers": true
+                        },
+                        "id": 9,
+                        "interval": null,
+                        "links": [],
+                        "mappingType": 1,
+                        "mappingTypes": [
+                            {
+                                "name": "value to text",
+                                "value": 1
+                            },
+                            {
+                                "name": "range to text",
+                                "value": 2
+                            }
+                        ],
+                        "maxDataPoints": 100,
+                        "nullPointMode": "connected",
+                        "nullText": null,
+                        "postfix": "",
+                        "postfixFontSize": "50%",
+                        "prefix": "",
+                        "prefixFontSize": "50%",
+                        "rangeMaps": [
+                            {
+                                "from": "null",
+                                "text": "N/A",
+                                "to": "null"
+                            }
+                        ],
+                        "span": 1.5,
+                        "sparkline": {
+                            "fillColor": "rgba(31, 118, 189, 0.18)",
+                            "full": false,
+                            "lineColor": "rgb(31, 120, 193)",
+                            "show": false
+                        },
+                        "targets": [
+                            {
+                                "alias": "Uptime",
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "$interval"
+                                        ],
+                                        "type": "time"
+                                    },
+                                    {
+                                        "params": [
+                                            "null"
+                                        ],
+                                        "type": "fill"
+                                    }
+                                ],
+                                "policy": "default",
+                                "query": "select last(value)*.01 from snmp_value where type_instance='uptime' and host=~ /^$host$/",
+                                "rawQuery": true,
+                                "refId": "A",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "value"
+                                            ],
+                                            "type": "field"
+                                        },
+                                        {
+                                            "params": [],
+                                            "type": "mean"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
+                            }
+                        ],
+                        "thresholds": "",
+                        "title": "Uptime",
+                        "type": "singlestat",
+                        "valueFontSize": "80%",
+                        "valueMaps": [
+                            {
+                                "op": "=",
+                                "text": "N/A",
+                                "value": "null"
+                            }
+                        ],
+                        "valueName": "current"
                     },
                     {
                         "aliasColors": {},
@@ -895,7 +1053,7 @@
                                 "format": "percent",
                                 "label": null,
                                 "logBase": 1,
-                                "max": null,
+                                "max": "100",
                                 "min": null,
                                 "show": true
                             },
@@ -1599,7 +1757,7 @@
                                 "format": "percent",
                                 "label": null,
                                 "logBase": 1,
-                                "max": null,
+                                "max": "100",
                                 "min": null,
                                 "show": true
                             },
@@ -1630,8 +1788,9 @@
                 {
                     "allValue": null,
                     "current": {
-                        "text": "agent1.example.lan",
-                        "value": "agent1.example.lan"
+                        "tags": [],
+                        "text": "server.example.lan",
+                        "value": "server.example.lan"
                     },
                     "datasource": "InfluxDB",
                     "hide": 0,
@@ -1653,7 +1812,7 @@
             ]
         },
         "time": {
-            "from": "now-6h",
+            "from": "now-30m",
             "to": "now"
         },
         "timepicker": {
@@ -1683,19 +1842,19 @@
         },
         "timezone": "browser",
         "title": "SNMP Host Dashboard",
-        "version": 0
+        "version": 4
     },
     "meta": {
         "canEdit": true,
         "canSave": true,
         "canStar": true,
-        "created": "2017-03-07T12:34:25Z",
+        "created": "2017-03-07T12:39:33Z",
         "createdBy": "admin",
         "expires": "0001-01-01T00:00:00Z",
         "slug": "snmp-host-dashboard",
         "type": "db",
-        "updated": "2017-03-07T12:34:25Z",
+        "updated": "2017-03-07T13:12:11Z",
         "updatedBy": "admin",
-        "version": 0
+        "version": 4
     }
 }
