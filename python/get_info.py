@@ -22,7 +22,7 @@ commands = {
     'memtotal': """cat /proc/meminfo |grep MemTotal|awk '{print $2}'""",
     'cputype': """cat /proc/cpuinfo |grep model\ name|awk -F':' '{print $2}'|sed 's/^ //g'""",
     'cpus': """cat /proc/cpuinfo |grep processor|wc -l""",
-    'cpu_cores': """cat /proc/cpuinfo |grep cpu\ cores|wc -l"""
+    'cpu_cores': """cat /proc/cpuinfo |grep cpu\ cores|wc -l""",
     'ipaddr': """ip addr show|grep inet |grep -v inet6 |grep -v 127.0.0.1|awk '{print $2}'|awk -F '/' '{print $1}'|tr '\n' ','|sed 's/,$//g'"""
 }
 shell_path='/bin:/usr/bin:/sbin:/usr/sbin'
