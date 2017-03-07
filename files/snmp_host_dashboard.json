@@ -51,45 +51,6 @@
                         ],
                         "targets": [
                             {
-                                "alias": "Asset Tag",
-                                "dsType": "influxdb",
-                                "groupBy": [
-                                    {
-                                        "params": [
-                                            "$interval"
-                                        ],
-                                        "type": "time"
-                                    },
-                                    {
-                                        "params": [
-                                            "null"
-                                        ],
-                                        "type": "fill"
-                                    }
-                                ],
-                                "hide": false,
-                                "policy": "default",
-                                "query": "SELECT last(asset) from snmp_data where host =~ /^$host$/",
-                                "rawQuery": true,
-                                "refId": "G",
-                                "resultFormat": "time_series",
-                                "select": [
-                                    [
-                                        {
-                                            "params": [
-                                                "value"
-                                            ],
-                                            "type": "field"
-                                        },
-                                        {
-                                            "params": [],
-                                            "type": "mean"
-                                        }
-                                    ]
-                                ],
-                                "tags": []
-                            },
-                            {
                                 "alias": "BIOS Version",
                                 "dsType": "influxdb",
                                 "groupBy": [
@@ -111,45 +72,6 @@
                                 "query": "SELECT last(bios_version) from snmp_data where host =~ /^$host$/ fill(0)",
                                 "rawQuery": true,
                                 "refId": "E",
-                                "resultFormat": "time_series",
-                                "select": [
-                                    [
-                                        {
-                                            "params": [
-                                                "value"
-                                            ],
-                                            "type": "field"
-                                        },
-                                        {
-                                            "params": [],
-                                            "type": "mean"
-                                        }
-                                    ]
-                                ],
-                                "tags": []
-                            },
-                            {
-                                "alias": "Operating System",
-                                "dsType": "influxdb",
-                                "groupBy": [
-                                    {
-                                        "params": [
-                                            "$interval"
-                                        ],
-                                        "type": "time"
-                                    },
-                                    {
-                                        "params": [
-                                            "null"
-                                        ],
-                                        "type": "fill"
-                                    }
-                                ],
-                                "hide": false,
-                                "policy": "default",
-                                "query": "SELECT last(os) from snmp_data where host =~ /^$host$/",
-                                "rawQuery": true,
-                                "refId": "A",
                                 "resultFormat": "time_series",
                                 "select": [
                                     [
@@ -228,6 +150,84 @@
                                 "query": "SELECT last(vendor) from snmp_data where host =~ /^$host$/",
                                 "rawQuery": true,
                                 "refId": "C",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "value"
+                                            ],
+                                            "type": "field"
+                                        },
+                                        {
+                                            "params": [],
+                                            "type": "mean"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
+                            },
+                            {
+                                "alias": "Asset Tag",
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "$interval"
+                                        ],
+                                        "type": "time"
+                                    },
+                                    {
+                                        "params": [
+                                            "null"
+                                        ],
+                                        "type": "fill"
+                                    }
+                                ],
+                                "hide": false,
+                                "policy": "default",
+                                "query": "SELECT last(asset) from snmp_data where host =~ /^$host$/",
+                                "rawQuery": true,
+                                "refId": "G",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "value"
+                                            ],
+                                            "type": "field"
+                                        },
+                                        {
+                                            "params": [],
+                                            "type": "mean"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
+                            },
+                            {
+                                "alias": "Operating System",
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "$interval"
+                                        ],
+                                        "type": "time"
+                                    },
+                                    {
+                                        "params": [
+                                            "null"
+                                        ],
+                                        "type": "fill"
+                                    }
+                                ],
+                                "hide": false,
+                                "policy": "default",
+                                "query": "SELECT last(os) from snmp_data where host =~ /^$host$/",
+                                "rawQuery": true,
+                                "refId": "A",
                                 "resultFormat": "time_series",
                                 "select": [
                                     [
@@ -404,7 +404,7 @@
                                 "tags": []
                             },
                             {
-                                "alias": "Memory Total",
+                                "alias": "Memory Total (MB)",
                                 "dsType": "influxdb",
                                 "groupBy": [
                                     {
@@ -1788,7 +1788,6 @@
                 {
                     "allValue": null,
                     "current": {
-                        "tags": [],
                         "text": "server.example.lan",
                         "value": "server.example.lan"
                     },
@@ -1812,7 +1811,7 @@
             ]
         },
         "time": {
-            "from": "now-30m",
+            "from": "now-1h",
             "to": "now"
         },
         "timepicker": {
@@ -1842,7 +1841,7 @@
         },
         "timezone": "browser",
         "title": "SNMP Host Dashboard",
-        "version": 4
+        "version": 5
     },
     "meta": {
         "canEdit": true,
@@ -1853,8 +1852,8 @@
         "expires": "0001-01-01T00:00:00Z",
         "slug": "snmp-host-dashboard",
         "type": "db",
-        "updated": "2017-03-07T13:12:11Z",
+        "updated": "2017-03-07T13:34:51Z",
         "updatedBy": "admin",
-        "version": 4
+        "version": 5
     }
 }
