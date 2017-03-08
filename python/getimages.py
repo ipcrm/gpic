@@ -21,10 +21,18 @@ baseurl = 'http://admin:admin@localhost:3000/render/dashboard-solo/db/snmp-host-
 #2 - Disk Util %
 
 #Set defaults for rendering
+#render = {
+#    11:  {'width':400, 'height': 300},
+#    6:  {'width': 400, 'height': 300},
+#    0:  {'width': 375, 'height': 153},
+#}
+
 render = {
-    11:  {'width':400, 'height': 300},
-    6:  {'width': 400, 'height': 300},
-    0:  {'width': 375, 'height': 153},
+    11:  {'width':475, 'height': 240},
+    6:  {'width':475, 'height': 240},
+    9:  {'width':475, 'height': 240},
+    10:  {'width':475, 'height': 240},
+    0:  {'width':475, 'height': 275},
 }
 
 sourceHTML=open('test.html','r').read()
@@ -51,7 +59,7 @@ for server in ['server.example.lan']:
 
       im = Image.open(g)
 
-      if graph in [6,11]:
+      if graph in [111]:
         imn = im.resize((375,275), Image.ANTIALIAS)
         imn.save(f, "PNG")
         imn.close()
