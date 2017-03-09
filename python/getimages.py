@@ -13,7 +13,7 @@ from influxdb import InfluxDBClient
 servers = []
 baseurl = 'http://admin:admin@localhost:3000/render/dashboard-solo/db/snmp-host-dashboard'
 targetdir = '/tmp/reports/'
-reportzip = '/tmp/report'
+reportzip = '/var/www/html/report.%s' % (time.time())
 
 try:
   if not os.path.exists(targetdir):
