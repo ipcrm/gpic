@@ -13,4 +13,6 @@ class gpic::python {
     refreshonly => true,
   }
 
+  include ::apache
+
 }
