@@ -91,4 +91,4 @@ for server in servers:
   print 'Server: %s took %ss to process' % (server,end-start)
 
 # Create ZIP file of reports
-shutil.make_archive(reportzip,'zip','/tmp/', targetdir)
+shutil.make_archive(reportzip,'zip',targetdir, targetdir)

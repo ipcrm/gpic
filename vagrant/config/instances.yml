@@ -6,6 +6,7 @@ instances:
       '8083': '8083'
       '8086': '8086'
       '3000': '3000'
+      '80': '8888'
     roles:
       - snmp_agent
       - server_node
