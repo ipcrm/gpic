@@ -4,6 +4,7 @@ import shutil
 import requests
 import tempfile
 import time
+import os
 from weasyprint import HTML, CSS
 from io import BytesIO
 from PIL import Image
@@ -11,6 +12,14 @@ from influxdb import InfluxDBClient
 
 servers = []
 baseurl = 'http://admin:admin@localhost:3000/render/dashboard-solo/db/snmp-host-dashboard'
+targetdir = '/tmp/reports/'
+reportzip = '/tmp/report'
+
+try:
+  if not os.path.exists(targetdir):
+    os.makedirs(targetdir)
+except:
+  raise
 
 try:
   client = InfluxDBClient('localhost', 8086, 'root', 'root', 'collectd')
@@ -76,8 +85,10 @@ for server in servers:
 
       g.close()
   end = time.time()
-  print 'Server: %s took %ss to process' % (server,end-start)
       
-
-  HTML(string=sourceHTML,base_url=wrkpath).write_pdf('/Users/mcadorette/git/gpic/sandbox/%s.pdf' % (server))
+  HTML(string=sourceHTML,base_url=wrkpath).write_pdf('%s/%s.pdf' % (targetdir,server))
   shutil.rmtree(wrkpath)
+  print 'Server: %s took %ss to process' % (server,end-start)
+
+# Create ZIP file of reports
+shutil.make_archive(reportzip,'zip','/tmp/', targetdir)
