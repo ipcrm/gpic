@@ -3,11 +3,24 @@
 import shutil
 import requests
 import tempfile
+import time
 from weasyprint import HTML, CSS
 from io import BytesIO
 from PIL import Image
+from influxdb import InfluxDBClient
 
+servers = []
 baseurl = 'http://admin:admin@localhost:3000/render/dashboard-solo/db/snmp-host-dashboard'
+
+try:
+  client = InfluxDBClient('localhost', 8086, 'root', 'root', 'collectd')
+  result = client.query('SHOW TAG VALUES FROM "snmp_value" WITH KEY = "host"')
+
+  for i in result:
+    for j in i:
+      servers.append(j['value'])
+except:
+  raise
 
 #6 - Details
 #11 - Details Part 2
@@ -21,26 +34,20 @@ baseurl = 'http://admin:admin@localhost:3000/render/dashboard-solo/db/snmp-host-
 #2 - Disk Util %
 
 #Set defaults for rendering
-#render = {
-#    11:  {'width':400, 'height': 300},
-#    6:  {'width': 400, 'height': 300},
-#    0:  {'width': 375, 'height': 153},
-#}
-
 render = {
-    11:  {'width':475, 'height': 240},
-    6:  {'width':475, 'height': 240},
-    9:  {'width':475, 'height': 240},
-    10:  {'width':475, 'height': 240},
+    11:  {'width':475, 'height': 238},
+    6:  {'width':475, 'height': 238},
+    9:  {'width':475, 'height': 238},
+    10:  {'width':475, 'height': 238},
     0:  {'width':475, 'height': 275},
 }
 
 sourceHTML=open('test.html','r').read()
 
 # To be updated with influxdb query
-for server in ['server.example.lan']:
+for server in servers:
+  start = time.time()
   wrkpath = tempfile.mkdtemp()
-  print wrkpath
   for graph in [1,2,3,4,6,7,8,9,10,11]:
     # Generate a tmp path
     # Set defaults if nothing custom
@@ -68,6 +75,8 @@ for server in ['server.example.lan']:
         im.close()
 
       g.close()
+  end = time.time()
+  print 'Server: %s took %ss to process' % (server,end-start)
       
 
   HTML(string=sourceHTML,base_url=wrkpath).write_pdf('/Users/mcadorette/git/gpic/sandbox/%s.pdf' % (server))
