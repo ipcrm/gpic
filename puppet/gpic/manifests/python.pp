@@ -1,6 +1,6 @@
 class gpic::python {
 
-  $packages = ['python-pip','python-cffi','python-devel','python-paramiko']
+  $packages = ['python-pip','python-cffi','python-devel','python-paramiko','pango-devel']
 
   package {$packages:
     ensure => present,
