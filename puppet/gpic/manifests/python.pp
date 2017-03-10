@@ -15,4 +15,19 @@ class gpic::python {
 
   include ::apache
 
+  cron { 'get_info':
+    command => '/bin/python /git/python/get_info.py &>> /var/log/get_info.py.log',
+    user    => 'root',
+    hour   => ['*'],
+    minute => '00',
+  }
+
+  cron { 
+    command => '/bin/python /git/python/getimages.py &>> /var/log/getimages.py.log',
+    user    => 'root',
+    hour   => ['07'],
+    minute => '00',
+  }
+  
+
 }
