@@ -28,6 +28,13 @@ class gpic::python {
     hour   => ['07'],
     minute => '00',
   }
+
+  cron { 'package_report':
+    command => '/bin/python /git/python/package_report.py &>> /var/log/package_report.py.log',
+    user    => 'root',
+    hour   => ['07'],
+    minute => '00',
+  }
   
 
 }
