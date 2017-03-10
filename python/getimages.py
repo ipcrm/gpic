@@ -51,7 +51,7 @@ render = {
     0:  {'width':475, 'height': 275},
 }
 
-sourceHTML=open('test.html','r').read()
+sourceHTML=open('/git/python/test.html','r').read()
 
 # To be updated with influxdb query
 for server in servers:
