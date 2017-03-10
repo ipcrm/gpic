@@ -23,7 +23,7 @@ commands = {
     'cputype': """cat /proc/cpuinfo |grep model\ name|awk -F':' '{print $2}'|sed 's/^ //g'""",
     'cpus': """cat /proc/cpuinfo |grep processor|wc -l""",
     'cpu_cores': """cat /proc/cpuinfo |grep cpu\ cores|wc -l""",
-    'ipaddr': """ip addr show|grep inet |grep -v inet6 |grep -v 127.0.0.1|awk '{print $2}'|awk -F '/' '{print $1}'|tr '\n' ','|sed 's/,$/\\n/g'"""
+    'ipaddr': """ip addr show|grep inet |grep -v inet6 |grep -v 127.0.0.1|awk '{print $2}'|awk -F '/' '{print $1}'|tr '\n' ','|sed 's/,$/\\n/g'""",
     'packages': """rpm -qa"""
 }
 shell_path='/bin:/usr/bin:/sbin:/usr/sbin'
@@ -41,7 +41,7 @@ class ServerInfoHelper(SeriesHelper):
     class Meta:
         client = myclient
         series_name = 'snmp_data'
-        fields = ['os', 'memtotal', 'vendor', 'asset', 'bios_version', 'cputype', 'cpus', 'cpu_cores', 'model', 'ipaddr']
+        fields = ['os', 'memtotal', 'vendor', 'asset', 'bios_version', 'cputype', 'cpus', 'cpu_cores', 'model', 'ipaddr','packages']
         tags = ['host']
         autocommit = True
 
@@ -55,13 +55,15 @@ for host in hosts:
     for item, command in commands.iteritems():
       newcommand=("export PATH=\'%s\';" % shell_path) + command
       stdin,stdout,stderr = ssh.exec_command(newcommand)
-      hostinfo[item] = stdout.readline()[0:-1]
+
+      if item == 'packages':
+        hostinfo[item] = stdout.readlines()
+      else:
+        hostinfo[item] = stdout.readline()[0:-1]
      
-      if item in ['vendor','asset','bios_version','cpu_type','model'] and len(hostinfo[item]) == 0:
+      if item in ['vendor','asset','bios_version','cpu_type','model','packages'] and len(hostinfo[item]) == 0:
         hostinfo[item] = 'N/A'
 
-    del hostinfo['packages']
-    print hostinfo[packages]
     ServerInfoHelper(host=host, **hostinfo)
   except Exception as e:
     print "Client [%s] - Error: [%s]" % (host,e)
