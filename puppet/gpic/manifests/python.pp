@@ -22,7 +22,7 @@ class gpic::python {
     minute => '00',
   }
 
-  cron { 
+  cron { 'get_images':
     command => '/bin/python /git/python/getimages.py &>> /var/log/getimages.py.log',
     user    => 'root',
     hour   => ['07'],
