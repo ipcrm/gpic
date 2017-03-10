@@ -1,13 +1,7 @@
 #!/usr/bin/env python
 
-import shutil
 import requests
-import tempfile
 import time
-import os
-from weasyprint import HTML, CSS
-from io import BytesIO
-from PIL import Image
 from influxdb import InfluxDBClient
 
 baseurl = 'http://admin:admin@localhost:3000/render/dashboard-solo/db/snmp-host-dashboard'
@@ -21,7 +15,7 @@ try:
   for i in result:
     server = i[0]['host']
     packages = ','.join(sorted(i[0]['last'].split(','),key=lambda s: s.lower()))
-    csv.write("%s,%s" % (server,packages))
+    csv.write("%s,%s\n" % (server,packages))
 
   csv.close()
 except:
