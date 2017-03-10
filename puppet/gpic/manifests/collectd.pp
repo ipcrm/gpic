@@ -19,6 +19,14 @@ class gpic::collectd {
     }
   }
 
+
+
+  Collectd::Plugin::Snmp::Host {
+    version   => '2',
+    community => 'secret',
+    interval  => 300
+  }
+
   hiera('snmp_hosts').each |$h,$f| {
     collectd::plugin::snmp::host {$h:
       * => $f
