@@ -57,7 +57,7 @@ for host in hosts:
       stdin,stdout,stderr = ssh.exec_command(newcommand)
 
       if item == 'packages':
-        hostinfo[item] = ','.join(stdout.readlines())
+        hostinfo[item] = ','.join(stdout.readlines()).replace('\n', '')
       else:
         hostinfo[item] = stdout.readline()[0:-1]
      
