@@ -5,7 +5,7 @@ import time
 from influxdb import InfluxDBClient
 
 baseurl = 'http://admin:admin@localhost:3000/render/dashboard-solo/db/snmp-host-dashboard'
-pkgreport = '/var/www/html/pkgreport.%s' % (time.time())
+pkgreport = '/var/www/html/pkgreport.%s.csv' % (time.time())
 
 try:
   csv = open(pkgreport, 'w')
