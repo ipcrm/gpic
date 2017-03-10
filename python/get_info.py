@@ -24,6 +24,7 @@ commands = {
     'cpus': """cat /proc/cpuinfo |grep processor|wc -l""",
     'cpu_cores': """cat /proc/cpuinfo |grep cpu\ cores|wc -l""",
     'ipaddr': """ip addr show|grep inet |grep -v inet6 |grep -v 127.0.0.1|awk '{print $2}'|awk -F '/' '{print $1}'|tr '\n' ','|sed 's/,$/\\n/g'"""
+    'packages': """rpm -qa"""
 }
 shell_path='/bin:/usr/bin:/sbin:/usr/sbin'
 
@@ -59,6 +60,8 @@ for host in hosts:
       if item in ['vendor','asset','bios_version','cpu_type','model'] and len(hostinfo[item]) == 0:
         hostinfo[item] = 'N/A'
 
+    del hostinfo['packages']
+    print hostinfo[packages]
     ServerInfoHelper(host=host, **hostinfo)
   except Exception as e:
     print "Client [%s] - Error: [%s]" % (host,e)
