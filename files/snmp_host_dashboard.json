@@ -1,46 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_INFLUXDB",
-      "label": "InfluxDB",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "4.2.0"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "influxdb",
-      "name": "InfluxDB",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "singlestat",
-      "name": "Singlestat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": []
   },
@@ -48,7 +6,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "hideControls": false,
-  "id": null,
+  "id": 4,
   "links": [],
   "refresh": false,
   "rows": [
@@ -58,7 +16,7 @@
       "panels": [
         {
           "columns": [],
-          "datasource": "${DS_INFLUXDB}",
+          "datasource": "InfluxDB",
           "filterNull": false,
           "fontSize": "100%",
           "id": 6,
@@ -295,7 +253,7 @@
         },
         {
           "columns": [],
-          "datasource": "${DS_INFLUXDB}",
+          "datasource": "InfluxDB",
           "filterNull": false,
           "fontSize": "100%",
           "id": 11,
@@ -545,7 +503,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "${DS_INFLUXDB}",
+          "datasource": "InfluxDB",
           "fill": 1,
           "id": 7,
           "legend": {
@@ -729,7 +687,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "${DS_INFLUXDB}",
+          "datasource": "InfluxDB",
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -835,7 +793,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "${DS_INFLUXDB}",
+          "datasource": "InfluxDB",
           "format": "s",
           "gauge": {
             "maxValue": 100,
@@ -935,7 +893,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "${DS_INFLUXDB}",
+          "datasource": "InfluxDB",
           "fill": 1,
           "id": 8,
           "legend": {
@@ -1125,7 +1083,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "${DS_INFLUXDB}",
+          "datasource": "InfluxDB",
           "fill": 1,
           "id": 4,
           "legend": {
@@ -1268,7 +1226,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "${DS_INFLUXDB}",
+          "datasource": "InfluxDB",
           "fill": 1,
           "id": 3,
           "legend": {
@@ -1496,7 +1454,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "${DS_INFLUXDB}",
+          "datasource": "InfluxDB",
           "description": "Total disk utilization",
           "fill": 1,
           "id": 1,
@@ -1677,7 +1635,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "${DS_INFLUXDB}",
+          "datasource": "InfluxDB",
           "fill": 1,
           "id": 2,
           "legend": {
@@ -1792,7 +1750,10 @@
     "list": [
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "agent1.example.lan",
+          "value": "agent1.example.lan"
+        },
         "datasource": "InfluxDB",
         "hide": 0,
         "includeAll": false,
