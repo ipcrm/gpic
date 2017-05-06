@@ -35,16 +35,8 @@ for host in hosts:
         command=("export PATH=\'%s\';" % shell_path) + ("df -Pkl %s | sed 1d") % mount
         stdin,stdout,stderr = ssh.exec_command(command)
 
-        print stdout.readlines()
+        print stdout.readlines()[0].replace('\n','')
 
-
-
-        
-
-
-
-    print hostinfo
-     
   except Exception as e:
     print "Client [%s] - Error: [%s]" % (host,e)
 
