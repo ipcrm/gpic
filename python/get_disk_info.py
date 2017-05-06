@@ -66,7 +66,7 @@ for host in hosts:
         diskinfo['used']    = diskinfo['used'] + int(used)
         diskinfo['free']    = diskinfo['free'] + int(avail)
 
-    diskinfo['percent'] = diskinfo['used']/diskinfo['total']
+    diskinfo['percent'] = 100 * ( float(diskinfo['used'])/float(diskinfo['total']) )
     ServerInfoHelper(host=host, **diskinfo)
   except Exception as e:
     print "Client [%s] - Error: [%s]" % (host,e)
