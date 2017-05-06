@@ -54,41 +54,6 @@ snmp_data:
     table: 'false'
     values:
       - "UCD-SNMP-MIB::memCached.0"
-  disk_total:
-    type: bytes
-    instance: "UCD-SNMP-MIB::dskPath"
-    instanceprefix: disktotal-
-    table: 'true'
-    values:
-     - "UCD-SNMP-MIB::dskTotal"
-  disk_avail:
-    type: bytes
-    instanceprefix: diskavail-
-    instance: "UCD-SNMP-MIB::dskPath"
-    table: 'true'
-    values:
-     - "UCD-SNMP-MIB::dskAvail"
-  disk_used:
-    type: bytes
-    instance: "UCD-SNMP-MIB::dskPath"
-    instanceprefix: diskused-
-    table: 'true'
-    values:
-     - "UCD-SNMP-MIB::dskUsed"
-  disk_percent:
-    type: percent
-    instance: "UCD-SNMP-MIB::dskPath"
-    instanceprefix: diskpercent-
-    table: 'true'
-    values:
-     - "UCD-SNMP-MIB::dskPercent"
-  disk_inodepercent:
-    type: percent
-    instance: "UCD-SNMP-MIB::dskPath"
-    instanceprefix: diskinodeper-
-    table: 'true'
-    values:
-     - "UCD-SNMP-MIB::dskPercentNode"
   cpu_user:
     type: percent
     instance: cpu_user
@@ -126,11 +91,6 @@ snmp_data_list: &snmp_data_list
   - swap_avail
   - memory_buffer
   - memory_cached
-  - disk_total
-  - disk_avail
-  - disk_used
-  - disk_percent
-  - disk_inodepercent
   - cpu_user
   - cpu_system
   - cpu_idle
