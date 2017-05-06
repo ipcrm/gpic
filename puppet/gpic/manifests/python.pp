@@ -22,6 +22,13 @@ class gpic::python {
     minute => '00',
   }
 
+  cron { 'get_disk_info':
+    command => '/bin/python /git/python/get_disk_info.py &>> /var/log/get_disk_info.py.log',
+    user    => 'root',
+    hour   => ['*'],
+    minute => '*/5',
+  }
+
   cron { 'get_images':
     command => '/bin/python /git/python/getimages.py &>> /var/log/getimages.py.log',
     user    => 'root',

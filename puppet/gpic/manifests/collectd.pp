@@ -43,9 +43,4 @@ class gpic::collectd {
     content => template('gpic/gpic_hosts.erb'),
   }
 
- class { 'collectd::plugin::df':
-    mountpoints        => ['/u'],
-    fstypes          => ['nfs','tmpfs','autofs','gpfs','proc','devpts'],
-    ignoreselected => true,
-  }
 }
