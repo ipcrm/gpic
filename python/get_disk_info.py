@@ -29,7 +29,10 @@ for host in hosts:
       stdin,stdout,stderr = ssh.exec_command(newcommand)
 
       #df -Pkl / | sed 1d
-      hostinfo[item] = stdout.readlines().replace('\n', '')
+      for line in stdout.readlines():
+        device,path,fstype = line.replace('\n', '').split()
+
+        print "%s - %s - %s" % (device,path,fstype)
 
 
 
