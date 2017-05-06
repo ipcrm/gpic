@@ -28,11 +28,18 @@ for host in hosts:
       newcommand=("export PATH=\'%s\';" % shell_path) + command
       stdin,stdout,stderr = ssh.exec_command(newcommand)
 
-      #df -Pkl / | sed 1d
       for line in stdout.readlines():
-        device,path,fstype = line.replace('\n', '').split()
+        _,mount,_ = line.replace('\n', '').split()
 
-        print "%s - %s - %s" % (device,path,fstype)
+        #df -Pkl / | sed 1d
+        command=("export PATH=\'%s\';" % shell_path) + ("df -Pkl %s | sed 1d") % mount
+        stdin,stdout,stderr = ssh.exec_command(command)
+
+        print stdout.readlines()
+
+
+
+        
 
 
 
