@@ -19,7 +19,12 @@ shell_path='/bin:/usr/bin:/sbin:/usr/sbin'
 
 for host in hosts:
   try:
-    hostinfo = {}
+    diskinfo = {
+        'total': 0,
+        'used': 0,
+        'free': 0,
+    }
+
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(host, username='vagrant', password='vagrant',timeout=5)
@@ -35,7 +40,14 @@ for host in hosts:
         command=("export PATH=\'%s\';" % shell_path) + ("df -Pkl %s | sed 1d") % mount
         stdin,stdout,stderr = ssh.exec_command(command)
 
-        print stdout.readlines()[0].replace('\n','')
+        #/dev/mapper/centos-root    19351552 1219072  18132480       7% /
+        _,total,used,avail = stdout.readlines()[0].replace('\n','').split()
+
+        diskinfo['total'] = diskinfo['total']+total
+        diskinfo['used']  = diskinfo['used']+total
+        diskinfo['free']  = diskinfo['free']+total
+
+    print diskinfo
 
   except Exception as e:
     print "Client [%s] - Error: [%s]" % (host,e)
