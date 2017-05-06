@@ -29,7 +29,7 @@ for host in hosts:
       stdin,stdout,stderr = ssh.exec_command(newcommand)
 
       #df -Pkl / | sed 1d
-      hostinfo[item] = stdout.readlines()
+      hostinfo[item] = stdout.readlines().replace('\n', '')
 
 
 
