@@ -43,9 +43,9 @@ for host in hosts:
         #/dev/mapper/centos-root    19351552 1219072  18132480       7% /
         _,total,used,avail,_,_ = stdout.readlines()[0].replace('\n','').split()
 
-        diskinfo['total'] = diskinfo['total']+total
-        diskinfo['used']  = diskinfo['used']+total
-        diskinfo['free']  = diskinfo['free']+total
+        diskinfo['total'] = diskinfo['total'] + int(total)
+        diskinfo['used']  = diskinfo['used'] + int(used)
+        diskinfo['free']  = diskinfo['free'] + int(avail)
 
     print diskinfo
 
