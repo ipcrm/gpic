@@ -32,7 +32,7 @@ class ServerInfoHelper(SeriesHelper):
     class Meta:
         client = myclient
         series_name = 'ssh_data'
-        fields = ['total', 'free', 'used']
+        fields = ['total', 'free', 'used','percent']
         tags = ['host']
         autocommit = True
 
@@ -62,10 +62,11 @@ for host in hosts:
         #/dev/mapper/centos-root    19351552 1219072  18132480       7% /
         _,total,used,avail,_,_ = stdout.readlines()[0].replace('\n','').split()
 
-        diskinfo['total'] = diskinfo['total'] + int(total)
-        diskinfo['used']  = diskinfo['used'] + int(used)
-        diskinfo['free']  = diskinfo['free'] + int(avail)
+        diskinfo['total']   = diskinfo['total'] + int(total)
+        diskinfo['used']    = diskinfo['used'] + int(used)
+        diskinfo['free']    = diskinfo['free'] + int(avail)
 
+    diskinfo['percent'] = diskinfo['used']/diskinfo['total']
     ServerInfoHelper(host=host, **diskinfo)
   except Exception as e:
     print "Client [%s] - Error: [%s]" % (host,e)
