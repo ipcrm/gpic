@@ -28,8 +28,9 @@ for host in hosts:
       newcommand=("export PATH=\'%s\';" % shell_path) + command
       stdin,stdout,stderr = ssh.exec_command(newcommand)
 
-      df -Pkl / | sed 1d
+      #df -Pkl / | sed 1d
       hostinfo[item] = stdout
+
 
 
     print hostinfo
