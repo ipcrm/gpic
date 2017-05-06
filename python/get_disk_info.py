@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import paramiko
 import sys
+from influxdb import InfluxDBClient
+from influxdb import SeriesHelper
 
 # Read hosts from file
 try:
@@ -16,6 +18,23 @@ commands = {
 }
 
 shell_path='/bin:/usr/bin:/sbin:/usr/sbin'
+
+## InfluxDB connections settings
+host = 'localhost'
+port = 8086
+user = 'root'
+password = 'root'
+dbname = 'collectd'
+myclient = InfluxDBClient(host, port, user, password, dbname)
+
+
+class ServerInfoHelper(SeriesHelper):
+    class Meta:
+        client = myclient
+        series_name = 'ssh_data'
+        fields = ['total', 'free', 'used']
+        tags = ['host']
+        autocommit = True
 
 for host in hosts:
   try:
@@ -47,8 +66,7 @@ for host in hosts:
         diskinfo['used']  = diskinfo['used'] + int(used)
         diskinfo['free']  = diskinfo['free'] + int(avail)
 
-    print diskinfo
-
+    ServerInfoHelper(host=host, **diskinfo)
   except Exception as e:
     print "Client [%s] - Error: [%s]" % (host,e)
 
