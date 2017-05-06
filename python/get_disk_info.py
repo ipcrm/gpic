@@ -32,7 +32,7 @@ class ServerInfoHelper(SeriesHelper):
     class Meta:
         client = myclient
         series_name = 'ssh_data'
-        fields = ['total', 'free', 'used','percent']
+        fields = ['total', 'free', 'used','prc']
         tags = ['host']
         autocommit = True
 
